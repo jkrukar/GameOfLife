@@ -1,0 +1,104 @@
+Conway's Game of Life in 3D
+
+by: John Krukar
+
+-Implements the rules of Conway's Game of Life in a 30x30x30 grid.
+
+-----------------------------
+User Interface:
+-----------------------------
+
+-Top Menu Bar
+
+    -Presets    (Disabled while the game is playing)
+        -Random     (Default)
+            -Randomly seeds 1% of the grid with living cells.
+        -Cross Section
+            -A cross section of the grid with "blocks", "beehives", "blinkers", and a "pulsar" to demonstrate the classical rules of Conway's Game of Life.
+            -Additionally included to assist grading/validating that the rules are implemented correctly.
+        -Oscillating "Pokeball"
+            -Seeds a two stacked "beacons" in each corner. Eventually it creates an interesting symmetric pattern with an oscillating pattern around the center.
+        -Maze Cube
+            -Fills the grid in an pattern resembling a maze. The pattern also has some symmetry in it.
+        -Two Toad
+            -Two oscillating "toads" begin at opposite ends of the grid and build the pattern up from the bottom to the top.
+        -PentaDecathlon
+            -Two "PentaDecathlons" (15 cycle oscillating pattern) converge in the center in a cool symmetric pattern.
+    -Rotation
+        -X-Axis
+            -Rotates the grid around the x-axis (default: on)
+        -Y-Axis
+            -Rotates the grid around the y-axis (default: on)
+        -Z-Axis
+            - Rotates the grid around the z-axis (default: on)
+
+-Bottom Tool Bar
+    -Play/Pause Button
+        -Plays or pauses the game.
+        -When the game is paused the Preset menu and reset button become enabled)
+    -Reset Button       (Disabled while the game is playing)
+        -Enabled when the game is paused.
+        -Resets the game. Changes made to Preset selection and Rule selection are updated when the game is reset.
+    -Rule 1:
+        -A cell is born if it has at least this many neighbors.
+        -Contains tooltip describing the rule.
+    -Rule 2:
+        -A cell is born if it has this many neighbors at most.
+        -Contains tooltip describing the rule.
+    -Rule 3:
+        -A cell will die if it has more than this many neighbors.
+        -Contains tooltip describing the rule.
+    -Rule 4:
+        -A cell will die if it has fewer than this many neighbors.
+        -Contains tooltip describing the rule.
+    -Generation:
+        -Displays the current generation of the game. A new generation occurs every 60 frames.
+    -Density:
+        -Displays what percentage of the grid is populated with living cells.
+
+-----------------------------
+User Controls
+-----------------------------
+
+-Camera
+    -Primary Button:
+        -Camera Angle: Hold down the primary button and drag the mouse to adjust the camera angle.
+    -Middle Button:
+        -Camera Zoom: Hold down the middle button and drag the mouse to zoom the camera in or out.
+    -Secondary Button:
+        -Camera Movement: Hold down the secondary button and drag the mouse to translate the camera.
+
+-Keyboard
+    -Shift:
+        -Hold down the shift key while moving the camera for exaggerated camera control.
+    -Control:
+        -Hold down the control key while moving the camera for finer camera control.
+    -Z:
+        -Resets the camera position
+
+-----------------------------
+Cell Lifecycle
+-----------------------------
+
+-New cells are created as small yellow cubes.
+-New cells grow into a full sized cube and become green.
+-Dying cells shrink down to small cubes and become red.
+-Dying cells that are already small and red, die and disappear.
+
+-----------------------------
+Class Files:
+-----------------------------
+
+-Xform.java
+    -Implements the Xform class from Oracle: https://docs.oracle.com/javase/8/javafx/graphics-tutorial/sampleapp3d-code.htm#CJAGGIFG
+
+-Cell.java
+	-Defines a Cell with a lifecycle behavior. A cell occupies a single point on the grid.
+
+-CellManager.java
+	-Defines a CellManager to maintain the grid and manage all of the cells in the grid.
+	-Contains private class MainGameLoop which extends AnimationTimer
+
+-GameOfLife.java
+    -Defines a GameOfLife which extends Application.
+    -Contains start();
